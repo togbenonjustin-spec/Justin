@@ -28,6 +28,7 @@ import { RecoveryRing } from "./recovery-ring";
 import { AnimatedSuccessCheck, ConfettiBurst } from "./confetti-burst";
 import { ReceiptModal } from "./receipt-modal";
 import { ThemeToggle } from "./theme-toggle";
+import { TypewriterLoop } from "./typewriter-loop";
 import {
   detectBeninOperator,
   formatFCFA,
@@ -549,9 +550,19 @@ export function InteractiveWorkspace({
                 <h2 className="font-display text-2xl font-extrabold">
                   Vue locataire
                 </h2>
-                <p className="mt-1 text-sm opacity-90">
-                  Simulez le lien reçu sur WhatsApp : aucun compte à créer,
-                  paiement en moins de 30 secondes.
+                <p className="mt-1.5 text-sm opacity-95">
+                  <TypewriterLoop
+                    typeSpeedMs={28}
+                    deleteSpeedMs={14}
+                    holdCompleteMs={3000}
+                    holdEmptyMs={450}
+                    cursorClassName="text-acc"
+                    segments={[
+                      {
+                        text: "Simulez le lien reçu sur WhatsApp : aucun compte à créer, paiement en moins de 30 secondes et reçu QR immédiat.",
+                      },
+                    ]}
+                  />
                 </p>
               </div>
 

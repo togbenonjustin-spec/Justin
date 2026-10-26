@@ -24,6 +24,7 @@ import {
 } from "@/components/loyerclair/confetti-burst";
 import { ReceiptModal } from "@/components/loyerclair/receipt-modal";
 import { ThemeToggle } from "@/components/loyerclair/theme-toggle";
+import { TypewriterLoop } from "@/components/loyerclair/typewriter-loop";
 import {
   detectBeninOperator,
   formatFCFA,
@@ -277,6 +278,20 @@ export default function TenantPortalPage() {
               {tenant.property_name} ({tenant.property_city}) · Bailleur :{" "}
               {tenant.landlord_name}
             </p>
+            <div className="mt-2 rounded-xl bg-white/10 px-3 py-1.5 text-xs font-medium text-white/95">
+              <TypewriterLoop
+                typeSpeedMs={26}
+                deleteSpeedMs={14}
+                holdCompleteMs={3200}
+                holdEmptyMs={450}
+                cursorClassName="text-acc"
+                segments={[
+                  {
+                    text: "Réglez en 30 secondes par MTN MoMo, Moov Money ou Celtiis Cash · Reçu officiel QR sur WhatsApp.",
+                  },
+                ]}
+              />
+            </div>
 
             <div className="mt-4 font-display text-3xl font-extrabold">
               <AnimatedAmount
