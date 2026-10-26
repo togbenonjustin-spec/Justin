@@ -1,0 +1,93 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>LoyerClair</title>
+<style>
+:root{--bg:#FAFAF7;--card:#fff;--ink:#0F1A17;--mut:#5E6D68;--pri:#0B6B4F;--onp:#fff;--acc:#F5B83D;--line:#E7E8E2;--ok:#0B8A5F;--warn:#B7791F;--bad:#C0392B;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0C1411;--card:#142019;--ink:#EEF3F0;--mut:#9DB0A8;--pri:#2BBE90;--onp:#06251b;--line:#22332B;--ok:#4BD6A4;--warn:#F0BE5E;--bad:#FF8070;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0C1411;--card:#142019;--ink:#EEF3F0;--mut:#9DB0A8;--pri:#2BBE90;--onp:#06251b;--line:#22332B;--ok:#4BD6A4;--warn:#F0BE5E;--bad:#FF8070;color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#app{max-width:520px;margin:auto;padding:20px 16px 110px}
+h1,h2,h3{margin:0;letter-spacing:-.02em}
+.hero{background:linear-gradient(135deg,#0B6B4F,#12946E 60%,#1FB589);color:#fff;border-radius:28px;padding:22px;position:relative;overflow:hidden;box-shadow:0 20px 40px -20px rgba(11,107,79,.6)}
+.hero:after{content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;background:rgba(245,184,61,.35);filter:blur(10px)}
+.hero p{margin:4px 0 0;opacity:.85}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.logo{font-weight:800;font-size:19px}.logo b{color:var(--acc)}
+.ib{border:0;background:var(--card);color:var(--ink);width:44px;height:44px;border-radius:14px;font-size:18px;box-shadow:0 1px 0 var(--line)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:0 8px 24px -16px rgba(0,0,0,.25)}
+.k{color:var(--mut);font-size:13px}.v{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums;margin-top:2px}
+.ring{display:flex;align-items:center;gap:10px}
+.ring circle{fill:none;stroke-width:9;stroke-linecap:round}
+.row{display:flex;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.row:first-child{border:0}.row>div:nth-child(2){flex:1;min-width:0}
+.av{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,var(--pri),var(--acc));color:#fff;display:grid;place-items:center;font-weight:700}
+.chip{font-size:12px;font-weight:700;padding:3px 10px;border-radius:99px;background:color-mix(in srgb,currentColor 14%,transparent)}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.btn{border:0;border-radius:16px;min-height:52px;padding:0 20px;font:700 16px inherit;font-family:inherit;background:var(--pri);color:var(--onp);width:100%;box-shadow:0 10px 20px -10px var(--pri);transition:transform .15s}
+.btn:active{transform:scale(.97)}.btn.s{width:auto;min-height:40px;padding:0 14px;font-size:14px;box-shadow:none}
+.btn.g{background:transparent;color:var(--pri);border:1.5px solid var(--line);box-shadow:none}
+nav{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;gap:6px;padding:6px;border-radius:22px;background:color-mix(in srgb,var(--card) 80%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);box-shadow:0 12px 30px -10px rgba(0,0,0,.35);z-index:5}
+nav button{border:0;background:none;color:var(--mut);padding:12px 18px;border-radius:16px;font:600 14px inherit;font-family:inherit}
+nav button.on{background:var(--pri);color:var(--onp)}
+.fab{position:fixed;right:max(16px,calc(50% - 244px));bottom:calc(88px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:20px;border:0;background:var(--acc);color:#1b1300;font-size:28px;box-shadow:0 12px 24px -8px rgba(245,184,61,.8);z-index:4}
+.ops{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.op{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:18px;padding:14px 4px;font:700 13px inherit;font-family:inherit;transition:.2s}
+.op i{display:block;font-style:normal;font-size:26px;margin-bottom:4px}
+.op.on{border-color:var(--pri);transform:translateY(-3px);box-shadow:0 10px 20px -12px var(--pri)}
+input{width:100%;min-height:52px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);padding:0 14px;font:16px inherit;font-family:inherit;margin:6px 0}
+#m{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-end;justify-content:center;z-index:9;padding-top:env(safe-area-inset-top,0px)}
+#m.show{display:flex;animation:fade .25s}
+.sheet{background:var(--bg);width:100%;max-width:520px;border-radius:28px 28px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px));max-height:92%;overflow:auto;animation:sl .35s cubic-bezier(.2,.8,.2,1)}
+.rc{background:var(--card);border:1px dashed var(--line);border-radius:20px;padding:18px;position:relative}
+.rc .r{display:flex;justify-content:space-between;padding:7px 0;font-size:14px}.rc .r span:first-child{color:var(--mut)}
+.stamp{position:absolute;right:14px;top:14px;border:2px solid var(--ok);color:var(--ok);font-weight:800;padding:2px 10px;border-radius:8px;transform:rotate(8deg);animation:pop .5s .3s both}
+.c{text-align:center;padding:30px 0}
+.pulse{width:84px;height:84px;margin:auto;border-radius:50%;background:var(--pri);display:grid;place-items:center;font-size:36px;position:relative}
+.pulse:before,.pulse:after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--pri);animation:pr 1.6s infinite}.pulse:after{animation-delay:.8s}
+.chk{width:96px;height:96px;margin:auto}
+.chk circle,.chk path{fill:none;stroke:var(--ok);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:300;stroke-dashoffset:300;animation:dr .8s forwards}.chk path{animation-delay:.45s;stroke-dasharray:60;stroke-dashoffset:60}
+.cf{position:fixed;left:50%;top:38%;width:9px;height:14px;border-radius:2px;background:var(--c);animation:bu 1.4s cubic-bezier(.1,.8,.3,1) forwards;pointer-events:none;z-index:20}
+#t{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translate(-50%,-90px);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:16px;font-weight:600;font-size:14px;z-index:30;transition:.4s;max-width:90%}
+#t.show{transform:translate(-50%,0)}
+.st>*{animation:up .55s both;animation-delay:calc(var(--i,0)*70ms)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}@keyframes fade{from{opacity:0}}@keyframes sl{from{transform:translateY(100%)}}
+@keyframes pop{from{opacity:0;transform:scale(2) rotate(8deg)}}@keyframes dr{to{stroke-dashoffset:0}}
+@keyframes pr{from{transform:scale(1);opacity:.7}to{transform:scale(2);opacity:0}}
+@keyframes bu{to{transform:translate(var(--x),var(--y)) rotate(540deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.chk circle,.chk path{stroke-dashoffset:0}}
+</style></head><body><div id="app"></div><nav><button id="n1">🏠 Propriétaire</button><button id="n2">📱 Locataire</button></nav><div id="m"></div><div id="t"></div>
+<script>
+const $=s=>document.querySelector(s),F=n=>n.toLocaleString("fr-FR").replace(/[\u202f\u00a0]/g," ")+" FCFA";
+let T=[{id:1,n:"Koffi Adjovi",u:"Appt 2A",p:"97 12 34 56",r:50000,paid:0},{id:2,n:"Awa Sossou",u:"Studio 4",p:"96 55 21 08",r:35000,paid:0,late:1},{id:3,n:"Jean Houngbo",u:"Appt 1B",p:"95 40 77 12",r:45000,paid:0},{id:4,n:"Fatou Dossou",u:"Villa 7",p:"99 31 62 90",r:80000,paid:0}],R=[],seq=1,view="own",tid=null,step=0,op="MTN MoMo";
+const mk=(t,a,o)=>{const r={no:"REC-2026-"+String(seq++).padStart(6,"0"),t,a,o,d:new Date().toLocaleString("fr-FR",{dateStyle:"long",timeStyle:"short"})};R.unshift(r);t.paid+=a;t.late=0;return r};
+mk(T[0],50000,"MTN MoMo");mk(T[3],80000,"Moov Money");
+const st=t=>t.paid>=t.r?["Payé","ok"]:t.late?["En retard","bad"]:["En attente","warn"];
+const ini=n=>n.split(" ").map(x=>x[0]).join("");
+function toast(s){const e=$("#t");e.textContent=s;e.classList.add("show");clearTimeout(e.h);e.h=setTimeout(()=>e.classList.remove("show"),2400)}
+function cu(e){const to=+e.dataset.n,t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/900),v=Math.round(to*(1-Math.pow(1-p,3)));e.textContent=e.dataset.m?v+" %":F(v);if(p<1)requestAnimationFrame(f)})(t0)}
+function own(){const g=T.reduce((a,t)=>a+t.paid,0),d=T.reduce((a,t)=>a+t.r,0),p=Math.round(g/d*100);
+return`<div class="st"><div class="top" style="--i:0"><div class="logo">Loyer<b>Clair</b></div><button class="ib" onclick="th()">🌓</button></div>
+<div class="hero" style="--i:1"><h2>Bonjour Adjoa 👋</h2><p>Novembre 2026 · ${T.length} locataires</p><div class="v" style="font-size:30px;margin-top:14px" data-n="${g}">0</div><p>encaissés ce mois</p></div>
+<div class="grid" style="--i:2"><div class="card"><div class="k">Attendu</div><div class="v" data-n="${d}">0</div></div><div class="card"><div class="k">Impayés</div><div class="v bad" data-n="${d-g}">0</div></div>
+<div class="card" style="grid-column:span 2"><div class="ring"><svg width="84" height="84" viewBox="0 0 84 84" style="transform:rotate(-90deg)"><circle cx="42" cy="42" r="34" stroke="var(--line)"/><circle id="rg" cx="42" cy="42" r="34" stroke="var(--pri)" stroke-dasharray="213.6" stroke-dashoffset="213.6" style="transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)" data-o="${213.6*(1-p/100)}"/></svg><div><div class="k">Taux de recouvrement</div><div class="v" data-n="${p}" data-m="1">0 %</div></div></div></div></div>
+<div class="card" style="--i:3"><h3 style="margin-bottom:6px">Locataires</h3>${T.map(t=>{const[s,c]=st(t);return`<div class="row"><div class="av">${ini(t.n)}</div><div><b>${t.n}</b><div class="k">${t.u} · ${F(t.r)}</div></div><div style="text-align:right"><span class="chip ${c}">${s}</span>${t.paid<t.r?`<div style="margin-top:6px;display:flex;gap:6px;justify-content:flex-end"><button class="btn s g" onclick="rel(${t.id})">Relancer</button><button class="btn s" onclick="cash(${t.id})">Espèces</button></div>`:""}</div></div>`}).join("")}</div>
+<div class="card" style="margin-top:16px;--i:4"><h3 style="margin-bottom:6px">Derniers reçus</h3>${R.slice(0,4).map(r=>`<div class="row" onclick="rcp('${r.no}')"><div class="av">🧾</div><div><b>${r.no}</b><div class="k">${r.t.n} · ${r.o}</div></div><b class="ok">${F(r.a)}</b></div>`).join("")}</div></div><button class="fab" onclick="add()" aria-label="Ajouter un locataire">+</button>`}
+function ten(){const t=T.find(x=>x.id===tid);
+if(!t)return`<div class="st"><div class="top"><div class="logo">Loyer<b>Clair</b></div><button class="ib" onclick="th()">🌓</button></div><div class="hero"><h2>Vue locataire</h2><p>Simulez le lien reçu sur WhatsApp : aucun compte à créer.</p></div><div class="card" style="margin-top:16px">${T.map(x=>`<div class="row" onclick="tid=${x.id};step=0;draw()"><div class="av">${ini(x.n)}</div><div><b>${x.n}</b><div class="k">Ouvrir son lien d’invitation</div></div><span>›</span></div>`).join("")}</div></div>`;
+const[s,c]=st(t),rest=t.r-t.paid;
+if(step===1)return`<div class="st"><button class="ib" onclick="step=0;draw()">←</button><h2 style="margin:14px 0 4px">Choisissez votre opérateur</h2><div class="k">Montant : <b>${F(rest)}</b></div><div class="ops">${[["🟡","MTN MoMo"],["🔵","Moov Money"],["🟣","Celtiis Cash"]].map(o=>`<button class="op ${op===o[1]?"on":""}" onclick="op='${o[1]}';draw()"><i>${o[0]}</i>${o[1]}</button>`).join("")}</div><div class="k">Numéro Mobile Money</div><input value="+229 ${t.p}" inputmode="tel"><button class="btn" style="margin-top:12px" onclick="pay()">Payer ${F(rest)}</button><p class="k" style="text-align:center">🔒 Paiement sécurisé · reçu automatique</p></div>`;
+if(step===2)return`<div class="c"><div class="pulse">📱</div><h2 style="margin-top:28px">Validez sur votre téléphone</h2><p class="k">Saisissez votre code PIN ${op} pour confirmer…</p></div>`;
+if(step===3)return`<div class="c"><svg class="chk" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44"/><path d="M30 52l14 14 27-30"/></svg><h2 style="margin-top:18px">Paiement réussi !</h2><p class="k">Votre reçu est prêt et a été envoyé par WhatsApp.</p><div style="margin-top:20px;display:grid;gap:10px"><button class="btn" onclick="rcp('${R[0].no}')">Voir mon reçu</button><button class="btn g" onclick="step=0;draw()">Retour</button></div></div>`;
+return`<div class="st"><div class="top"><button class="ib" onclick="tid=null;draw()">←</button><div class="logo">Loyer<b>Clair</b></div></div><div class="hero"><p>Bonjour ${t.n.split(" ")[0]} 👋</p><h2 style="font-size:20px">Loyer de novembre · ${t.u}</h2><div class="v" style="font-size:32px;margin-top:10px" data-n="${rest}">0</div><p><span class="chip">${s}</span></p></div>${rest>0?`<button class="btn" style="margin-top:16px" onclick="step=1;draw()">Payer maintenant</button>`:`<p class="c ok"><b>✅ Loyer réglé, merci !</b></p>`}<div class="card" style="margin-top:16px"><h3 style="margin-bottom:6px">Mes reçus</h3>${R.filter(r=>r.t===t).map(r=>`<div class="row" onclick="rcp('${r.no}')"><div class="av">🧾</div><div><b>${r.no}</b><div class="k">${r.d}</div></div><b>${F(r.a)}</b></div>`).join("")||'<p class="k">Aucun reçu pour le moment.</p>'}</div></div>`}
+function draw(){$("#app").innerHTML=view==="own"?own():ten();$("#n1").className=view==="own"?"on":"";$("#n2").className=view==="ten"?"on":"";document.querySelectorAll("[data-n]").forEach(cu);const g=$("#rg");if(g)requestAnimationFrame(()=>requestAnimationFrame(()=>g.setAttribute("stroke-dashoffset",g.dataset.o)))}
+function pay(){const t=T.find(x=>x.id===tid);step=2;draw();setTimeout(()=>{mk(t,t.r-t.paid,op);step=3;draw();boom()},2600)}
+function boom(){for(let i=0;i<26;i++){const e=document.createElement("i");e.className="cf";e.style.cssText=`--x:${(Math.random()-.5)*340}px;--y:${Math.random()*320-120}px;--c:${["#F5B83D","#12946E","#fff","#E85D75"][i%4]}`;document.body.appendChild(e);setTimeout(()=>e.remove(),1500)}}
+function qr(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;let p="";for(let y=0;y<11;y++)for(let x=0;x<11;x++){const f=(x<3&&y<3)||(x>7&&y<3)||(x<3&&y>7);h=(h*1103515245+12345)>>>0;if(f||(h>>>16)%2)p+=`M${x} ${y}h1v1h-1z`}return`<svg width="84" height="84" viewBox="0 0 11 11"><path d="${p}" fill="currentColor"/></svg>`}
+function rcp(no){const r=R.find(x=>x.no===no);$("#m").innerHTML=`<div class="sheet"><div class="rc"><span class="stamp">PAYÉ</span><div class="logo">Loyer<b>Clair</b></div><div class="k">Reçu de paiement</div><h3 style="margin:10px 0">${r.no}</h3><div class="r"><span>Locataire</span><b>${r.t.n}</b></div><div class="r"><span>Logement</span><b>${r.t.u}</b></div><div class="r"><span>Période</span><b>Novembre 2026</b></div><div class="r"><span>Opérateur</span><b>${r.o}</b></div><div class="r"><span>Date</span><b>${r.d}</b></div><div class="r" style="font-size:18px"><span>Montant</span><b class="ok">${F(r.a)}</b></div><div style="display:flex;align-items:center;gap:12px;margin-top:10px">${qr(r.no)}<div class="k">Scannez pour vérifier l’authenticité de ce reçu. <b class="ok">Reçu authentique ✅</b></div></div></div><div style="display:grid;gap:10px;margin-top:14px"><button class="btn" onclick="toast('Reçu partagé sur WhatsApp ✅')">Partager sur WhatsApp</button><button class="btn g" onclick="cm()">Fermer</button></div></div>`;$("#m").classList.add("show")}
+function cm(){$("#m").classList.remove("show")}
+function add(){$("#m").innerHTML=`<div class="sheet"><h2>Nouveau locataire</h2><p class="k">Il recevra un lien d’invitation sur WhatsApp.</p><input id="a1" placeholder="Nom complet"><input id="a2" placeholder="Numéro de téléphone" inputmode="tel"><input id="a3" placeholder="Loyer mensuel (FCFA)" inputmode="numeric"><button class="btn" style="margin-top:10px" onclick="sv()">Envoyer l’invitation</button></div>`;$("#m").classList.add("show")}
+function sv(){const n=$("#a1").value.trim(),r=+$("#a3").value;if(!n||!r){toast("Nom et loyer requis");return}T.push({id:Date.now(),n,u:"Nouveau",p:$("#a2").value||"—",r,paid:0});cm();draw();toast("Invitation envoyée à "+n+" 📲")}
+const rel=id=>toast("Relance WhatsApp envoyée à "+T.find(t=>t.id===id).n+" 💬"),cash=id=>{const t=T.find(x=>x.id===id);mk(t,t.r-t.paid,"Espèces");draw();toast("Paiement en espèces enregistré · reçu généré 🧾")};
+function th(){const d=document.documentElement,dk=d.dataset.theme?d.dataset.theme==="dark":matchMedia("(prefers-color-scheme:dark)").matches;d.dataset.theme=dk?"light":"dark"}
+$("#n1").onclick=()=>{view="own";draw()};$("#n2").onclick=()=>{view="ten";step=0;draw()};$("#m").onclick=e=>{if(e.target.id==="m")cm()};draw();
+</script></body></html>
