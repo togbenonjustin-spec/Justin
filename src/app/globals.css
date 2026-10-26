@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #FAFAF7;
+  --card: #FFFFFF;
+  --ink: #0F1A17;
+  --mut: #5E6D68;
+  --pri: #0B6B4F;
+  --onp: #FFFFFF;
+  --acc: #F5B83D;
+  --line: #E7E8E2;
+  --ok: #0B8A5F;
+  --warn: #B7791F;
+  --bad: #C0392B;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C1411;
+    --card: #142019;
+    --ink: #EEF3F0;
+    --mut: #9DB0A8;
+    --pri: #2BBE90;
+    --onp: #06251B;
+    --line: #22332B;
+    --ok: #4BD6A4;
+    --warn: #F0BE5E;
+    --bad: #FF8070;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0C1411;
+  --card: #142019;
+  --ink: #EEF3F0;
+  --mut: #9DB0A8;
+  --pri: #2BBE90;
+  --onp: #06251B;
+  --line: #22332B;
+  --ok: #4BD6A4;
+  --warn: #F0BE5E;
+  --bad: #FF8070;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  min-height: 100dvh;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #0B6B4F, #12946E 60%, #1FB589);
+  color: #ffffff;
+  box-shadow: 0 20px 40px -20px rgba(11, 107, 79, 0.6);
+}
+
+.glass-nav {
+  background: color-mix(in srgb, var(--card) 84%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+.ussd-pulse::before,
+.ussd-pulse::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid var(--pri);
+  animation: pulse-ring 1.6s infinite;
+}
+
+.ussd-pulse::after {
+  animation-delay: 0.8s;
+}
+
+@keyframes draw-stroke {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.svg-check-circle {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw-stroke 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.svg-check-path {
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  animation: draw-stroke 0.55s 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .svg-check-circle,
+  .svg-check-path {
+    stroke-dashoffset: 0 !important;
+  }
+}

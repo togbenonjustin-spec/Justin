@@ -1,0 +1,19 @@
+{
+  "name": "LoyerClair — Collecte de loyers Mobile Money Bénin",
+  "short_name": "LoyerClair",
+  "description": "Encaissez vos loyers par MTN MoMo, Moov Money et Celtiis Cash au Bénin. Reçu officiel QR envoyé sur WhatsApp.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF7",
+  "theme_color": "#0B6B4F",
+  "orientation": "portrait-primary",
+  "lang": "fr-BJ",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
