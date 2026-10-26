@@ -15,11 +15,11 @@ interface TypewriterLoopProps {
    * Permet de conserver les couleurs ou le gras sur certains mots tout en animant caractère par caractère.
    */
   segments: TypewriterSegment[];
-  /** Vitesse d'écriture par caractère (ms) */
+  /** Vitesse d'écriture par caractère (ms) — plus élevé = plus doux et posé */
   typeSpeedMs?: number;
   /** Vitesse d'effacement par caractère (ms) */
   deleteSpeedMs?: number;
-  /** Pause une fois la phrase complète (ms) */
+  /** Pause de lecture une fois la phrase complète (ms) */
   holdCompleteMs?: number;
   /** Pause une fois la phrase effacée avant de ré-écrire (ms) */
   holdEmptyMs?: number;
@@ -33,11 +33,11 @@ interface TypewriterLoopProps {
 
 export function TypewriterLoop({
   segments,
-  typeSpeedMs = 38,
-  deleteSpeedMs = 20,
-  holdCompleteMs = 2600,
-  holdEmptyMs = 450,
-  initialDelayMs = 0,
+  typeSpeedMs = 75,
+  deleteSpeedMs = 38,
+  holdCompleteMs = 6500,
+  holdEmptyMs = 1000,
+  initialDelayMs = 200,
   className,
   cursorClassName = "text-acc",
 }: TypewriterLoopProps) {
@@ -66,9 +66,18 @@ export function TypewriterLoop({
       }, initialDelayMs);
     } else if (phase === "typing") {
       if (charCount < totalLength) {
+        // Légère respiration naturelle après une virgule ou un point
+        const prevChar = charCount > 0 ? fullText[charCount - 1] : "";
+        const punctuationPause =
+          prevChar === "." || prevChar === ":" || prevChar === "·"
+            ? 260
+            : prevChar === ","
+            ? 140
+            : 0;
+
         timer = setTimeout(() => {
           setCharCount((c) => Math.min(totalLength, c + 1));
-        }, typeSpeedMs);
+        }, typeSpeedMs + punctuationPause);
       } else {
         setPhase("holding");
       }
@@ -94,6 +103,7 @@ export function TypewriterLoop({
   }, [
     charCount,
     phase,
+    fullText,
     totalLength,
     typeSpeedMs,
     deleteSpeedMs,

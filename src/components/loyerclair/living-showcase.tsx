@@ -144,13 +144,13 @@ export function LivingHeroSection() {
           Encaissement Mobile Money & Quittances QR au Bénin
         </motion.div>
 
-        {/* TITRE PRINCIPAL : Animation lettre par lettre (Apparition -> Pause -> Disparition -> Apparition) */}
+        {/* TITRE PRINCIPAL : Animation lettre par lettre douce + longue pause de lecture (6,5 s) */}
         <h1 className="mt-4 font-display text-3xl font-extrabold leading-[1.15] tracking-tight sm:text-4xl md:text-[42px]">
           <TypewriterLoop
-            typeSpeedMs={42}
-            deleteSpeedMs={22}
-            holdCompleteMs={2800}
-            holdEmptyMs={450}
+            typeSpeedMs={85}
+            deleteSpeedMs={42}
+            holdCompleteMs={6500}
+            holdEmptyMs={1000}
             cursorClassName="text-acc"
             segments={[
               { text: "Encaissez vos loyers " },
@@ -162,14 +162,14 @@ export function LivingHeroSection() {
           />
         </h1>
 
-        {/* SOUS-TITRE LOCATAIRE : Même modèle lettre par lettre (Apparition -> Pause -> Disparition -> Apparition) */}
+        {/* SOUS-TITRE LOCATAIRE : Rythme posé + 8 secondes de lecture une fois affiché */}
         <p className="mt-3 text-sm leading-relaxed text-mut sm:text-base">
           <TypewriterLoop
-            typeSpeedMs={24}
-            deleteSpeedMs={12}
-            holdCompleteMs={3400}
-            holdEmptyMs={500}
-            initialDelayMs={350}
+            typeSpeedMs={55}
+            deleteSpeedMs={28}
+            holdCompleteMs={8000}
+            holdEmptyMs={1200}
+            initialDelayMs={600}
             cursorClassName="text-pri"
             segments={[
               { text: "Le locataire paie en 30 secondes par " },

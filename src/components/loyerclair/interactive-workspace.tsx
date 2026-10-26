@@ -552,10 +552,10 @@ export function InteractiveWorkspace({
                 </h2>
                 <p className="mt-1.5 text-sm opacity-95">
                   <TypewriterLoop
-                    typeSpeedMs={28}
-                    deleteSpeedMs={14}
-                    holdCompleteMs={3000}
-                    holdEmptyMs={450}
+                    typeSpeedMs={60}
+                    deleteSpeedMs={30}
+                    holdCompleteMs={7000}
+                    holdEmptyMs={1000}
                     cursorClassName="text-acc"
                     segments={[
                       {

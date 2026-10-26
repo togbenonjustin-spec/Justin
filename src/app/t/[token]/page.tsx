@@ -280,10 +280,10 @@ export default function TenantPortalPage() {
             </p>
             <div className="mt-2 rounded-xl bg-white/10 px-3 py-1.5 text-xs font-medium text-white/95">
               <TypewriterLoop
-                typeSpeedMs={26}
-                deleteSpeedMs={14}
-                holdCompleteMs={3200}
-                holdEmptyMs={450}
+                typeSpeedMs={60}
+                deleteSpeedMs={30}
+                holdCompleteMs={7000}
+                holdEmptyMs={1000}
                 cursorClassName="text-acc"
                 segments={[
                   {
